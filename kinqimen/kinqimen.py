@@ -19,7 +19,7 @@ class Qimen:
         self.jieqi = re.findall('..', '春分清明穀雨立夏小滿芒種夏至小暑大暑立秋處暑白露秋分寒露霜降立冬小雪大雪冬至小寒大寒立春雨水驚蟄')
         self.jieqi_all = self.new_list(self.jieqi, "冬至")
         self.cnumber =list("一二三四五六七八九")
-        self.doors = list("休生傷杜景死驚開")
+        self.doors = re.findall("..","休門生門傷門杜門景門死門驚門開門")
         self.eight_gua =list("坎坤震巽中乾兌艮離")
         self.clockwise_eightgua = list("坎艮震巽離坤兌乾")
         self.Gan, self.Zhi = list("甲乙丙丁戊己庚辛壬癸"),list("子丑寅卯辰巳午未申酉戌亥")
@@ -248,7 +248,7 @@ class Qimen:
         gongs_code = dict(zip(self.cnumber, self.eight_gua))
         hgan = dict(zip(self.Gan,range(0,11))).get(self.gangzhi()[3][0])
         chour = self.multi_key_dict_get(self.liujiashun_dict(), self.gangzhi()[3])
-        door = dict(zip(list(self.zhishi_pai().keys()), list(map(lambda i: dict(zip(self.cnumber, list("休死傷杜中開驚生景"))).get(i[0]), list(self.zhishi_pai().values()))))).get(chour)
+        door = dict(zip(list(self.zhishi_pai().keys()), list(map(lambda i: dict(zip(self.cnumber, re.findall("..","休門死門傷門杜門中門開門驚門生門景門"))).get(i[0]), list(self.zhishi_pai().values()))))).get(chour)
         if door == "中":
             door = "死"
         return {"值符星宮":[dict(zip(list(self.zhifu_pai().keys()), list(map(lambda i:dict(zip(self.cnumber, list("蓬芮沖輔禽心柱任英"))).get(i[0]) , list(self.zhifu_pai().values()))))).get(chour),dict(zip(list(self.zhifu_pai().keys()), list(map(lambda i:gongs_code.get(i[hgan]), list(self.zhifu_pai().values()))))).get(chour)], "值使門宮":[door,dict(zip(list(self.zhishi_pai().keys()),list(map(lambda i:gongs_code.get(i[hgan]), list(self.zhishi_pai().values()))))).get(chour)]}
