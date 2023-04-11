@@ -23,8 +23,6 @@ class Qimen:
         self.eight_gua =list("坎坤震巽中乾兌艮離")
         self.clockwise_eightgua = list("坎艮震巽離坤兌乾")
         self.Gan, self.Zhi = list("甲乙丙丁戊己庚辛壬癸"),list("子丑寅卯辰巳午未申酉戌亥")
-
-
      #上中下元
     def year_yuen(self):
         w = [(i * 60) + 4 for i in range(22,100)]
